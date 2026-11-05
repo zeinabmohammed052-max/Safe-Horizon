@@ -759,3 +759,135 @@ body.large-text {
     scroll-behavior: auto !important;
   }
 }
+/* =========================
+   EMERGENCY MODE
+========================= */
+
+.emergency-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+    background: #d93636;
+    color: white;
+    border: none;
+    padding: 15px 23px;
+    border-radius: 35px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.18);
+    transition: 0.3s;
+}
+
+.emergency-btn:hover {
+    background: #b82020;
+    transform: translateY(-3px);
+}
+
+.emergency-panel {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    background: rgba(10, 25, 45, 0.75);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.emergency-content {
+    position: relative;
+    background: white;
+    width: 100%;
+    max-width: 520px;
+    padding: 40px 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 50px rgba(0,0,0,0.2);
+    animation: emergencyAppear 0.3s ease;
+}
+
+@keyframes emergencyAppear {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.emergency-icon {
+    font-size: 55px;
+    margin-bottom: 15px;
+}
+
+.emergency-content h2 {
+    color: #173b60;
+    margin-bottom: 15px;
+}
+
+.emergency-content p {
+    color: #62748a;
+    line-height: 1.7;
+    margin-bottom: 20px;
+}
+
+.emergency-warning {
+    background: #fff4e5;
+    border-left: 4px solid #e99b29;
+    padding: 15px;
+    border-radius: 8px;
+    color: #76501c;
+    line-height: 1.6;
+    text-align: left;
+    margin-bottom: 22px;
+}
+
+.close-emergency {
+    position: absolute;
+    top: 15px;
+    right: 18px;
+    background: transparent;
+    border: none;
+    font-size: 25px;
+    cursor: pointer;
+    color: #65758a;
+}
+
+.safety-guide-btn,
+.close-btn {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    border-radius: 9px;
+    margin-top: 12px;
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.safety-guide-btn {
+    background: #087eb5;
+    color: white;
+    border: none;
+}
+
+.close-btn {
+    background: #f0f3f7;
+    color: #34465c;
+    border: none;
+}
+
+@media(max-width: 600px) {
+    .emergency-content {
+        padding: 35px 20px;
+    }
+
+    .emergency-btn {
+        bottom: 15px;
+        right: 15px;
+    }
+}
