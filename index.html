@@ -1,15 +1,18 @@
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Safe-Horizon helps everyone understand natural hazards and prepare for emergencies.">
+  <meta name="theme-color" content="#102b46">
+
   <title>Safe-Horizon | Understand Earth. Stay Prepared.</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
   <link rel="stylesheet" href="style.css">
 </head>
 
@@ -27,191 +30,210 @@
   </nav>
 
   <div class="nav-actions">
-  <button class="access-btn" onclick="toggleContrast()"
-    aria-label="Toggle high contrast">◐</button>
-
-  <button class="access-btn" onclick="changeFontSize()"
-    aria-label="Change text size">A+</button>
-
-  <button class="access-btn" onclick="toggleLanguage()"
-    id="languageBtn">عربي</button>
-
-  <button class="menu-btn" onclick="toggleMenu()"
-    aria-label="Open menu">☰</button>
-</div>
+    <button class="access-btn" onclick="toggleContrast()" aria-label="Toggle high contrast">◐</button>
+    <button class="access-btn" onclick="changeFontSize()" aria-label="Change text size">A+</button>
+    <button class="access-btn" onclick="toggleLanguage()" id="languageBtn">عربي</button>
+    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
+  </div>
 </header>
 
 <main>
 
   <!-- HOME PAGE -->
   <section id="home" class="page active">
+
     <div class="hero">
       <div class="hero-content">
-        <span class="eyebrow">🌍 GLOBAL EARTH AWARENESS</span>
 
-        <h1>Understand Earth.<br><span>Stay Prepared.</span></h1>
+        <span class="eyebrow" id="heroEyebrow">🌍 GLOBAL EARTH AWARENESS</span>
 
-        <p>
-          Explore natural hazards around the world.
-          Understand environmental changes and learn
-          how to stay safe when disasters happen.
+        <h1 id="heroHeading">
+          Understand Earth.<br>
+          <span>Stay Prepared.</span>
+        </h1>
+
+        <p id="heroDesc">
+          Explore natural hazards around the world. Understand environmental changes and learn how to stay safe when disasters happen.
         </p>
 
         <div class="hero-buttons">
-          <button class="primary-btn" onclick="showPage('dashboard')">
+          <button class="primary-btn" onclick="showPage('dashboard')" id="heroExploreBtn">
             Explore Earth <span>→</span>
           </button>
-          <button class="outline-btn" onclick="showPage('safety')">
+
+          <button class="outline-btn" onclick="showPage('safety')" id="heroSafetyBtn">
             Safety Center
           </button>
         </div>
 
         <div class="hero-points">
-          <div><strong>01</strong><small>Global Awareness</small></div>
-          <div><strong>02</strong><small>Hazard Monitoring</small></div>
-          <div><strong>03</strong><small>Safety For Everyone</small></div>
+          <div><strong>01</strong><small id="point1">Global Awareness</small></div>
+          <div><strong>02</strong><small id="point2">Hazard Monitoring</small></div>
+          <div><strong>03</strong><small id="point3">Safety For Everyone</small></div>
         </div>
+
       </div>
 
       <div class="earth-visual">
         <div class="orbit orbit-one"></div>
         <div class="orbit orbit-two"></div>
         <div class="earth-circle">🌍</div>
-        <div class="floating-card">✦ One planet. Shared safety.</div>
+        <div class="floating-card" id="floatingCard">✦ One planet. Shared safety.</div>
       </div>
     </div>
 
     <div class="intro-section">
-      <span class="eyebrow">OUR MISSION</span>
-      <h2>Knowledge is the first step to safety.</h2>
-      <p>
-        Safe-Horizon brings natural hazard awareness,
-        accessible safety education and global environmental
-        information into one simple platform.
+      <span class="eyebrow" id="missionEyebrow">OUR MISSION</span>
+      <h2 id="missionHeading">Knowledge is the first step to safety.</h2>
+
+      <p id="missionDesc">
+        Safe-Horizon brings natural hazard awareness, accessible safety education and global environmental information into one simple platform.
       </p>
     </div>
 
     <div class="feature-grid">
+
       <article class="feature-card">
         <div class="feature-icon">🌎</div>
-        <h3>Explore Earth</h3>
-        <p>Discover natural events and explore our global monitoring dashboard.</p>
-        <button class="text-btn" onclick="showPage('dashboard')">Explore →</button>
+        <h3 id="feat1Title">Explore Earth</h3>
+        <p id="feat1Desc">Discover natural events and explore our global monitoring dashboard.</p>
+        <button class="text-btn" onclick="showPage('dashboard')" id="feat1Btn">Explore →</button>
       </article>
 
       <article class="feature-card">
         <div class="feature-icon">📚</div>
-        <h3>Learn & Prepare</h3>
-        <p>Understand different hazards and learn practical safety steps.</p>
-        <button class="text-btn" onclick="showPage('safety')">Learn more →</button>
+        <h3 id="feat2Title">Learn & Prepare</h3>
+        <p id="feat2Desc">Understand different hazards and learn practical safety steps.</p>
+        <button class="text-btn" onclick="showPage('safety')" id="feat2Btn">Learn more →</button>
       </article>
 
       <article class="feature-card">
         <div class="feature-icon">♿</div>
-        <h3>Safety for Everyone</h3>
-        <p>Accessible information designed for different user needs.</p>
-        <button class="text-btn" onclick="toggleContrast()">Accessibility →</button>
+        <h3 id="feat3Title">Safety for Everyone</h3>
+        <p id="feat3Desc">Accessible information designed for different user needs.</p>
+        <button class="text-btn" onclick="toggleContrast()" id="feat3Btn">Accessibility →</button>
       </article>
+
     </div>
   </section>
 
+
   <!-- DASHBOARD PAGE -->
   <section id="dashboard" class="page dashboard-page">
+
     <div class="page-heading">
       <div>
-        <span class="eyebrow">GLOBAL MONITORING</span>
-        <h1>Explore Our Earth</h1>
-        <p>Discover natural hazards and environmental events.</p>
+        <span class="eyebrow" id="dashEyebrow">GLOBAL MONITORING</span>
+        <h1 id="dashHeading">Explore Our Earth</h1>
+        <p id="dashDesc">Discover natural hazards and environmental events.</p>
       </div>
-      <span class="status-label">● Monitoring interface</span>
+
+      <span class="status-label" id="dashStatus">● Monitoring interface</span>
     </div>
 
     <div class="stats-grid">
+
       <article class="stat-card">
         <span>🌍</span>
-        <p>Earthquakes</p>
+        <p id="statEq">Earthquakes</p>
         <h2>--</h2>
-        <small>Live data not connected</small>
+        <small class="not-connected">Live data not connected</small>
       </article>
 
       <article class="stat-card">
         <span>🌋</span>
-        <p>Volcanoes</p>
+        <p id="statVol">Volcanoes</p>
         <h2>--</h2>
-        <small>Live data not connected</small>
+        <small class="not-connected">Live data not connected</small>
       </article>
 
       <article class="stat-card">
         <span>🔥</span>
-        <p>Wildfires</p>
+        <p id="statFire">Wildfires</p>
         <h2>--</h2>
-        <small>Live data not connected</small>
+        <small class="not-connected">Live data not connected</small>
       </article>
 
       <article class="stat-card">
         <span>🌊</span>
-        <p>Other Events</p>
+        <p id="statOther">Other Events</p>
         <h2>--</h2>
-        <small>Live data not connected</small>
+        <small class="not-connected">Live data not connected</small>
       </article>
+
     </div>
 
     <div class="dashboard-layout">
+
       <article class="panel map-panel">
+
         <div class="panel-heading">
           <div>
-            <h2>Global Hazard Map</h2>
-            <p>Interactive geographical monitoring</p>
+            <h2 id="mapTitle">Global Hazard Map</h2>
+            <p id="mapDesc">Interactive geographical monitoring</p>
           </div>
-          <span class="coming-label">MAP INTEGRATION NEXT</span>
+
+          <span class="coming-label" id="mapBadge">MAP INTEGRATION NEXT</span>
         </div>
 
         <div class="map-placeholder">
           <div class="map-message">
             <span>🌐</span>
-            <h3>Our planet, connected.</h3>
-            <p>The interactive global map will appear here.</p>
+            <h3 id="mapPlaceTitle">Our planet, connected.</h3>
+            <p id="mapPlaceDesc">The interactive global map will appear here.</p>
           </div>
         </div>
 
-        <p class="map-note">
+        <p class="map-note" id="mapNote">
           Map and event data will be connected in the next development phase.
         </p>
+
       </article>
 
       <article class="panel events-panel">
-        <h2>Latest Natural Events</h2>
-        <p class="panel-description">Event information will appear here.</p>
+
+        <h2 id="eventsTitle">Latest Natural Events</h2>
+        <p class="panel-description" id="eventsDesc">Event information will appear here.</p>
 
         <div class="empty-state">
           <span>🛰️</span>
-          <h3>Preparing the data center</h3>
-          <p>Real event information will be displayed after connecting trusted data sources.</p>
+          <h3 id="emptyTitle">Preparing the data center</h3>
+          <p id="emptyDesc">Real event information will be displayed after connecting trusted data sources.</p>
         </div>
 
-        <button class="outline-btn full-btn" onclick="showPage('safety')">
+        <button class="outline-btn full-btn" onclick="showPage('safety')" id="eventsSafetyBtn">
           Explore Safety Guides
         </button>
+
       </article>
+
     </div>
 
     <div class="panel dashboard-bottom">
+
       <div>
-        <span class="eyebrow">BE PREPARED</span>
-        <h2>Knowing what to do matters.</h2>
-        <p>Explore safety information for different natural hazards.</p>
+        <span class="eyebrow" id="bottomEyebrow">BE PREPARED</span>
+        <h2 id="bottomHeading">Knowing what to do matters.</h2>
+        <p id="bottomDesc">Explore safety information for different natural hazards.</p>
       </div>
-      <button class="primary-btn" onclick="showPage('safety')">Open Safety Center →</button>
+
+      <button class="primary-btn" onclick="showPage('safety')" id="bottomBtn">
+        Open Safety Center →
+      </button>
+
     </div>
+
   </section>
+
 
   <!-- SAFETY CENTER -->
   <section id="safety" class="page safety-page">
+
     <div class="page-heading">
       <div>
-        <span class="eyebrow">KNOWLEDGE & PREPAREDNESS</span>
-        <h1>Disaster Safety Center</h1>
-        <p>Learn how to prepare, respond and stay informed.</p>
+        <span class="eyebrow" id="safetyEyebrow">KNOWLEDGE & PREPAREDNESS</span>
+        <h1 id="safetyHeading">Disaster Safety Center</h1>
+        <p id="safetyDesc">Learn how to prepare, respond and stay informed.</p>
       </div>
     </div>
 
@@ -219,109 +241,146 @@
 
       <article class="safety-card">
         <span>🌍</span>
-        <h2>Earthquakes</h2>
-        <p>Learn how to prepare for and respond safely to ground shaking.</p>
-        <button onclick="openGuide('earthquake')">Read safety guide →</button>
+        <h2 id="cardEqTitle">Earthquakes</h2>
+        <p id="cardEqDesc">Learn how to prepare for and respond safely to ground shaking.</p>
+        <button onclick="openGuide('earthquake')" class="read-guide-btn">Read safety guide →</button>
       </article>
 
       <article class="safety-card">
         <span>🌋</span>
-        <h2>Volcanic Activity</h2>
-        <p>Understand volcanic hazards and follow official evacuation advice.</p>
-        <button onclick="openGuide('volcano')">Read safety guide →</button>
+        <h2 id="cardVolTitle">Volcanic Activity</h2>
+        <p id="cardVolDesc">Understand volcanic hazards and follow official evacuation advice.</p>
+        <button onclick="openGuide('volcano')" class="read-guide-btn">Read safety guide →</button>
       </article>
 
       <article class="safety-card">
         <span>🌊</span>
-        <h2>Floods</h2>
-        <p>Understand flood risks and learn how to prepare for flooding.</p>
-        <button onclick="openGuide('flood')">Read safety guide →</button>
+        <h2 id="cardFloodTitle">Floods</h2>
+        <p id="cardFloodDesc">Understand flood risks and learn how to prepare for flooding.</p>
+        <button onclick="openGuide('flood')" class="read-guide-btn">Read safety guide →</button>
       </article>
 
       <article class="safety-card">
         <span>⛈️</span>
-        <h2>Severe Storms</h2>
-        <p>Learn how to respond to severe weather warnings.</p>
-        <button onclick="openGuide('storm')">Read safety guide →</button>
+        <h2 id="cardStormTitle">Severe Storms</h2>
+        <p id="cardStormDesc">Learn how to respond to severe weather warnings.</p>
+        <button onclick="openGuide('storm')" class="read-guide-btn">Read safety guide →</button>
       </article>
 
       <article class="safety-card">
         <span>🔥</span>
-        <h2>Wildfires</h2>
-        <p>Learn about wildfire preparedness and official safety guidance.</p>
-        <button onclick="openGuide('wildfire')">Read safety guide →</button>
+        <h2 id="cardFireTitle">Wildfires</h2>
+        <p id="cardFireDesc">Learn about wildfire preparedness and official safety guidance.</p>
+        <button onclick="openGuide('wildfire')" class="read-guide-btn">Read safety guide →</button>
       </article>
 
       <article class="safety-card">
         <span>🌀</span>
-        <h2>Cyclones</h2>
-        <p>Understand cyclone warnings and preparation procedures.</p>
-        <button onclick="openGuide('cyclone')">Read safety guide →</button>
+        <h2 id="cardCycTitle">Cyclones</h2>
+        <p id="cardCycDesc">Understand cyclone warnings and preparation procedures.</p>
+        <button onclick="openGuide('cyclone')" class="read-guide-btn">Read safety guide →</button>
       </article>
 
     </div>
 
-    <div id="guideModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="guideTitle">
+    <!-- SAFETY GUIDE MODAL -->
+    <div id="guideModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="guideTitle" aria-hidden="true">
+
       <div class="modal-content">
+
         <button class="close-btn" onclick="closeGuide()" aria-label="Close">×</button>
-        <span class="eyebrow">SAFETY INFORMATION</span>
+
+        <span class="eyebrow" id="modalEyebrow">SAFETY INFORMATION</span>
+
         <h2 id="guideTitle">Safety Guide</h2>
-        <div id="guideContent"></div>
+
+        <div id="guideContent">
+          <p>Select a hazard to read its safety guide.</p>
+        </div>
+
         <p class="official-note">
-          Always follow instructions from local emergency authorities.
-          This educational guide does not replace official warnings.
+          Always follow instructions and alerts issued by your local emergency authorities.
         </p>
-        <button class="primary-btn" onclick="closeGuide()">Close guide</button>
+
+        <button class="primary-btn" onclick="closeGuide()">Close Guide</button>
+
       </div>
     </div>
+
   </section>
 
 </main>
 
-<button class="emergency-btn" onclick="emergencyMode()">
-    🆘 Emergency Help
+
+<!-- EMERGENCY HELP BUTTON -->
+<button class="emergency-btn" onclick="emergencyMode()" aria-label="Open emergency assistance">
+  🆘 Emergency Help
 </button>
 
-<div id="emergencyPanel" class="emergency-panel" style="display: none;">
 
-    <div class="emergency-content">
+<!-- EMERGENCY PANEL -->
+<div id="emergencyPanel" class="emergency-panel" style="display: none;" role="dialog" aria-modal="true" aria-hidden="true">
 
-        <button class="close-emergency" onclick="closeEmergency()">
-            ✕
-        </button>
+  <div class="emergency-content">
 
-        <div class="emergency-icon">🆘</div>
+    <button class="close-emergency" onclick="closeEmergency()" aria-label="Close emergency assistance">
+      ✕
+    </button>
 
-        <h2>Emergency Assistance</h2>
+    <div class="emergency-icon">🆘</div>
 
-        <p>
-            If you are facing a natural disaster,
-            stay calm and follow official safety instructions.
-        </p>
+    <h2>Emergency Assistance</h2>
 
-        <div class="emergency-warning">
-            ⚠️ This platform provides awareness information.
-            Always follow instructions from local emergency authorities.
-        </div>
+    <p>
+      If you are facing a natural disaster, stay calm and follow official safety instructions.
+    </p>
 
-        <button onclick="showPage('safety')" class="safety-guide-btn">
-            Open Safety Guides →
-        </button>
-
-        <button onclick="closeEmergency()" class="close-btn">
-            Close
-        </button>
-
+    <div class="emergency-warning">
+      ⚠️ This platform provides awareness information. Always follow instructions from local emergency authorities.
     </div>
 
+    <button onclick="closeEmergency(); showPage('safety')" class="safety-guide-btn">
+      Open Safety Guides →
+    </button>
+
+    <button onclick="closeEmergency()" class="close-btn">
+      Close
+    </button>
+
+  </div>
 </div>
 
-<footer>
-  <div class="logo">SAFE<span>-HORIZON</span></div>
-  <p>Understand Earth. Stay Prepared.</p>
-  <small>Educational awareness platform | 2026</small>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-content">
+
+    <a class="logo" href="#" onclick="showPage('home'); return false;">
+      SAFE<span>-HORIZON</span>
+    </a>
+
+    <p>Understand Earth. Stay Prepared.</p>
+
+    <p class="footer-note">
+      An educational natural hazard awareness platform.
+      Always rely on official authorities for emergency instructions.
+    </p>
+
+    <div class="footer-links">
+      <a href="https://eonet.gsfc.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA EONET</a>
+      <a href="https://earthquake.usgs.gov/earthquakes/feed/" target="_blank" rel="noopener noreferrer">USGS Earthquakes</a>
+      <a href="https://www.weather.gov/" target="_blank" rel="noopener noreferrer">NOAA / NWS</a>
+    </div>
+
+    <small>© 2026 Safe-Horizon. Educational project.</small>
+
+  </div>
 </footer>
 
-<script src="script.js"></script>
+
+<script src="script.js" defer></script>
+
 </body>
 </html>
+
+
