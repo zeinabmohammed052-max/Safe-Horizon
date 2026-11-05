@@ -27,9 +27,18 @@
   </nav>
 
   <div class="nav-actions">
-    <button class="access-btn" onclick="toggleContrast()" aria-label="Toggle high contrast">◐</button>
-    <button class="menu-btn" onclick="toggleMenu()" aria-label="Open menu">☰</button>
-  </div>
+  <button class="access-btn" onclick="toggleContrast()"
+    aria-label="Toggle high contrast">◐</button>
+
+  <button class="access-btn" onclick="changeFontSize()"
+    aria-label="Change text size">A+</button>
+
+  <button class="access-btn" onclick="toggleLanguage()"
+    id="languageBtn">عربي</button>
+
+  <button class="menu-btn" onclick="toggleMenu()"
+    aria-label="Open menu">☰</button>
+</div>
 </header>
 
 <main>
@@ -269,9 +278,43 @@
 
 </main>
 
-<button class="emergency-btn" onclick="showPage('safety')">
-  🆘 Emergency Help
+<button class="emergency-btn" onclick="emergencyMode()">
+    🆘 Emergency Help
 </button>
+
+<div id="emergencyPanel" class="emergency-panel" style="display: none;">
+
+    <div class="emergency-content">
+
+        <button class="close-emergency" onclick="closeEmergency()">
+            ✕
+        </button>
+
+        <div class="emergency-icon">🆘</div>
+
+        <h2>Emergency Assistance</h2>
+
+        <p>
+            If you are facing a natural disaster,
+            stay calm and follow official safety instructions.
+        </p>
+
+        <div class="emergency-warning">
+            ⚠️ This platform provides awareness information.
+            Always follow instructions from local emergency authorities.
+        </div>
+
+        <button onclick="showPage('safety')" class="safety-guide-btn">
+            Open Safety Guides →
+        </button>
+
+        <button onclick="closeEmergency()" class="close-btn">
+            Close
+        </button>
+
+    </div>
+
+</div>
 
 <footer>
   <div class="logo">SAFE<span>-HORIZON</span></div>
