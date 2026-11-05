@@ -137,3 +137,53 @@ document.addEventListener("keydown", function(event) {
     closeGuide();
   }
 });
+/* =========================
+   EMERGENCY MODE FUNCTIONS
+========================= */
+
+function emergencyMode() {
+    const panel = document.getElementById("emergencyPanel");
+
+    if (!panel) {
+        console.error("Emergency panel not found!");
+        return;
+    }
+
+    panel.style.display = "flex";
+    panel.setAttribute("aria-hidden", "false");
+
+    document.body.style.overflow = "hidden";
+
+    const closeButton = panel.querySelector(".close-emergency");
+
+    if (closeButton) {
+        closeButton.focus();
+    }
+}
+
+function closeEmergency() {
+    const panel = document.getElementById("emergencyPanel");
+
+    if (!panel) return;
+
+    panel.style.display = "none";
+    panel.setAttribute("aria-hidden", "true");
+
+    document.body.style.overflow = "";
+}
+
+// Close with Escape key
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        closeEmergency();
+    }
+});
+
+// Close when clicking outside the panel
+document.addEventListener("click", function(event) {
+    const panel = document.getElementById("emergencyPanel");
+
+    if (panel && event.target === panel) {
+        closeEmergency();
+    }
+});
