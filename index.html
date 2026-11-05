@@ -14,6 +14,11 @@
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="style.css">
+  <link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  crossorigin=""
+/>
 </head>
 
 <body>
@@ -175,31 +180,31 @@
 
           <span class="coming-label" id="mapBadge">MAP INTEGRATION NEXT</span>
         </div>
+<div class="map-section">
+  <div class="section-heading">
+    <h2>Global Disaster Map</h2>
+    <p>Explore currently reported natural events around the world.</p>
+  </div>
 
-        <div class="map-placeholder">
-          <div class="map-message">
-            <span>🌐</span>
-            <h3 id="mapPlaceTitle">Our planet, connected.</h3>
-            <p id="mapPlaceDesc">The interactive global map will appear here.</p>
-          </div>
-        </div>
+  <div id="mapStatus" class="map-status">
+    Loading live disaster data...
+  </div>
 
-        <p class="map-note" id="mapNote">
-          Map and event data will be connected in the next development phase.
-        </p>
+  <div id="disasterMap"></div>
 
-      </article>
+  <p class="map-note">
+    Data is provided by NASA EONET and USGS.
+    Event locations and reporting times may be approximate.
+  </p>
+</div>
 
-      <article class="panel events-panel">
-
-        <h2 id="eventsTitle">Latest Natural Events</h2>
-        <p class="panel-description" id="eventsDesc">Event information will appear here.</p>
-
-        <div class="empty-state">
-          <span>🛰️</span>
-          <h3 id="emptyTitle">Preparing the data center</h3>
-          <p id="emptyDesc">Real event information will be displayed after connecting trusted data sources.</p>
-        </div>
+<div class="live-events-section">
+  <h2>Latest Natural Events</h2>
+  <div id="liveEvents">
+    <p>Loading events...</p>
+  </div>
+</div>
+ 
 
         <button class="outline-btn full-btn" onclick="showPage('safety')" id="eventsSafetyBtn">
           Explore Safety Guides
@@ -376,7 +381,10 @@
 
   </div>
 </footer>
-
+<script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  crossorigin=""
+></script>
 
 <script src="script.js" defer></script>
 
