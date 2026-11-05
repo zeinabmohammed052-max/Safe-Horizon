@@ -891,3 +891,97 @@ body.large-text {
         right: 15px;
     }
 }
+
+/* =========================
+   SAFE-HORIZON FINAL FIXES
+========================= */
+
+/* Fix emergency close button */
+.emergency-content > .close-btn {
+  position: static;
+  display: block;
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px;
+  border-radius: 9px;
+  background: #f0f3f7;
+  color: #34465c;
+  border: none;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* Keep emergency close icon in the correct position */
+.emergency-content > .close-emergency {
+  position: absolute;
+  top: 15px;
+  right: 18px;
+}
+
+/* Keyboard accessibility */
+button:focus-visible,
+a:focus-visible {
+  outline: 3px solid #f0a52b;
+  outline-offset: 3px;
+}
+
+/* Better Arabic layout */
+html[dir="rtl"] body {
+  font-family: 'Cairo', sans-serif;
+}
+
+html[dir="rtl"] .floating-card {
+  right: auto;
+  left: 0;
+}
+
+html[dir="rtl"] .emergency-btn {
+  right: auto;
+  left: 22px;
+}
+
+html[dir="rtl"] .emergency-warning {
+  border-left: none;
+  border-right: 4px solid #e99b29;
+  text-align: right;
+}
+
+html[dir="rtl"] .close-emergency {
+  right: auto;
+  left: 18px;
+}
+
+@media(max-width: 600px) {
+  html[dir="rtl"] .emergency-btn {
+    left: 12px;
+    right: auto;
+  }
+}
+
+/* Footer links */
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 18px 0;
+}
+
+.footer-links a {
+  color: var(--blue);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* Better large text accessibility */
+body.large-text p,
+body.large-text a,
+body.large-text button,
+body.large-text small {
+  font-size: 1.15em;
+}
