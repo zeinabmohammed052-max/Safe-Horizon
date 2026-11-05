@@ -1,4 +1,9 @@
 
+// =====================================
+// SAFE-HORIZON | MAIN JAVASCRIPT
+// =====================================
+
+
 // PAGE NAVIGATION
 
 function showPage(pageId) {
@@ -12,7 +17,8 @@ function showPage(pageId) {
     selectedPage.classList.add("active");
   }
 
-  document.getElementById("navLinks").classList.remove("open");
+  const navLinks = document.getElementById("navLinks");
+  if (navLinks) navLinks.classList.remove("open");
 
   window.scrollTo({
     top: 0,
@@ -20,11 +26,14 @@ function showPage(pageId) {
   });
 }
 
+
 // MOBILE MENU
 
 function toggleMenu() {
-  document.getElementById("navLinks").classList.toggle("open");
+  const navLinks = document.getElementById("navLinks");
+  if (navLinks) navLinks.classList.toggle("open");
 }
+
 
 // ACCESSIBILITY: HIGH CONTRAST
 
@@ -33,14 +42,139 @@ function toggleContrast() {
 
   const enabled = document.body.classList.contains("high-contrast");
 
-  document.querySelector(".access-btn").setAttribute(
-    "aria-pressed",
-    String(enabled)
+  const contrastButton = document.querySelector(
+    '[aria-label="Toggle high contrast"]'
   );
+
+  if (contrastButton) {
+    contrastButton.setAttribute("aria-pressed", String(enabled));
+  }
 }
 
+
+// ACCESSIBILITY: FONT SIZE
+
+let largeFont = false;
+
+function changeFontSize() {
+  largeFont = !largeFont;
+
+  document.body.classList.toggle("large-text", largeFont);
+
+  const fontButton = document.querySelector(
+    '[aria-label="Change text size"]'
+  );
+
+  if (fontButton) {
+    fontButton.setAttribute("aria-pressed", String(largeFont));
+  }
+}
+
+
+// LANGUAGE SYSTEM
+
+let currentLanguage = "en";
+
+const translations = {
+  ar: {
+    home: "الرئيسية",
+    dashboard: "استكشف الأرض",
+    safety: "مركز السلامة",
+    explore: "استكشف الأرض",
+    safetyCenter: "مركز السلامة",
+    eyebrow: "🌍 الوعي العالمي بالأرض",
+    heading: "افهم كوكب الأرض.<br><span>كن مستعدًا.</span>",
+    description: "استكشف المخاطر الطبيعية حول العالم، وافهم التغيرات البيئية، وتعلم كيف تحافظ على سلامتك عند حدوث الكوارث.",
+    mission: "المعرفة هي الخطوة الأولى نحو السلامة.",
+    missionDesc: "يجمع Safe-Horizon الوعي بالمخاطر الطبيعية والتعليم المتاح للجميع ومعلومات البيئة العالمية في منصة بسيطة.",
+    dashHeading: "استكشف كوكبنا",
+    dashDesc: "اكتشف المخاطر الطبيعية والأحداث البيئية.",
+    safetyHeading: "مركز السلامة من الكوارث",
+    safetyDesc: "تعلم كيفية الاستعداد والتصرف والبقاء على اطلاع.",
+    emergency: "🆘 مساعدة الطوارئ",
+    mapTitle: "خريطة المخاطر العالمية",
+    eventsTitle: "أحدث الأحداث الطبيعية",
+    earthquake: "الزلازل",
+    volcano: "النشاط البركاني",
+    flood: "الفيضانات",
+    storm: "العواصف الشديدة",
+    wildfire: "حرائق الغابات",
+    cyclone: "الأعاصير"
+  }
+};
+
+function toggleLanguage() {
+  currentLanguage = currentLanguage === "en" ? "ar" : "en";
+
+  document.documentElement.lang = currentLanguage;
+  document.documentElement.dir =
+    currentLanguage === "ar" ? "rtl" : "ltr";
+
+  const button = document.getElementById("languageBtn");
+
+  if (button) {
+    button.textContent = currentLanguage === "ar" ? "English" : "عربي";
+  }
+
+  if (currentLanguage === "ar") {
+    applyArabic();
+  } else {
+    location.reload();
+  }
+}
+
+function applyArabic() {
+  const t = translations.ar;
+
+  const setText = (id, value) => {
+    const element = document.getElementById(id);
+    if (element) element.textContent = value;
+  };
+
+  setText("heroEyebrow", t.eyebrow);
+
+  const heading = document.getElementById("heroHeading");
+  if (heading) heading.innerHTML = t.heading;
+
+  setText("heroDesc", t.description);
+  setText("missionHeading", t.mission);
+  setText("missionDesc", t.missionDesc);
+  setText("dashHeading", t.dashHeading);
+  setText("dashDesc", t.dashDesc);
+  setText("safetyHeading", t.safetyHeading);
+  setText("safetyDesc", t.safetyDesc);
+  setText("mapTitle", t.mapTitle);
+  setText("eventsTitle", t.eventsTitle);
+
+  setText("statEq", t.earthquake);
+  setText("cardEqTitle", t.earthquake);
+  setText("cardVolTitle", t.volcano);
+  setText("cardFloodTitle", t.flood);
+  setText("cardStormTitle", t.storm);
+  setText("cardFireTitle", t.wildfire);
+  setText("cardCycTitle", t.cyclone);
+
+  document.querySelectorAll(".emergency-btn").forEach(button => {
+    button.textContent = t.emergency;
+  });
+
+  const nav = document.querySelectorAll("#navLinks a");
+
+  if (nav.length >= 3) {
+    nav[0].textContent = t.home;
+    nav[1].textContent = t.dashboard;
+    nav[2].textContent = t.safety;
+  }
+
+  document.querySelectorAll(".hero-buttons button").forEach((button, index) => {
+    button.textContent = index === 0 ? t.explore : t.safetyCenter;
+  });
+}
+
+
+// =====================================
 // SAFETY GUIDES
-// Initial educational content; verify against official local guidance before publication.
+// =====================================
 
 const safetyGuides = {
   earthquake: {
@@ -86,16 +220,27 @@ const safetyGuides = {
   }
 };
 
+
 // OPEN GUIDE
+
+let lastGuideTrigger = null;
 
 function openGuide(type) {
   const guide = safetyGuides[type];
 
   if (!guide) return;
 
-  document.getElementById("guideTitle").textContent = guide.title;
+  const modal = document.getElementById("guideModal");
+  const title = document.getElementById("guideTitle");
+  const content = document.getElementById("guideContent");
 
-  document.getElementById("guideContent").innerHTML = `
+  if (!modal || !title || !content) return;
+
+  lastGuideTrigger = document.activeElement;
+
+  title.textContent = guide.title;
+
+  content.innerHTML = `
     <div class="guide-section">
       <h3>1. Before the event</h3>
       <p>${guide.before}</p>
@@ -112,78 +257,85 @@ function openGuide(type) {
     </div>
   `;
 
-  document.getElementById("guideModal").classList.add("open");
-  document.getElementById("guideModal").querySelector(".close-btn").focus();
+  modal.classList.add("open");
+  modal.setAttribute("aria-hidden", "false");
+
+  const closeButton = modal.querySelector(".close-btn");
+  if (closeButton) closeButton.focus();
 }
+
 
 // CLOSE GUIDE
 
 function closeGuide() {
-  document.getElementById("guideModal").classList.remove("open");
+  const modal = document.getElementById("guideModal");
+
+  if (!modal) return;
+
+  modal.classList.remove("open");
+  modal.setAttribute("aria-hidden", "true");
+
+  if (lastGuideTrigger) {
+    lastGuideTrigger.focus();
+  }
 }
 
-// CLOSE MODAL BY CLICKING OUTSIDE
 
-document.getElementById("guideModal").addEventListener("click", function(event) {
+// CLOSE GUIDE BY CLICKING OUTSIDE
+
+document.getElementById("guideModal")?.addEventListener("click", function(event) {
   if (event.target === this) {
     closeGuide();
   }
 });
 
-// CLOSE MODAL WITH ESCAPE
+
+// =====================================
+// EMERGENCY MODE
+// =====================================
+
+function emergencyMode() {
+  const panel = document.getElementById("emergencyPanel");
+
+  if (!panel) return;
+
+  panel.style.display = "flex";
+  panel.setAttribute("aria-hidden", "false");
+
+  document.body.style.overflow = "hidden";
+
+  const closeButton = panel.querySelector(".close-emergency");
+
+  if (closeButton) closeButton.focus();
+}
+
+function closeEmergency() {
+  const panel = document.getElementById("emergencyPanel");
+
+  if (!panel) return;
+
+  panel.style.display = "none";
+  panel.setAttribute("aria-hidden", "true");
+
+  document.body.style.overflow = "";
+}
+
+
+// KEYBOARD SUPPORT
 
 document.addEventListener("keydown", function(event) {
   if (event.key === "Escape") {
     closeGuide();
+    closeEmergency();
   }
 });
-/* =========================
-   EMERGENCY MODE FUNCTIONS
-========================= */
 
-function emergencyMode() {
-    const panel = document.getElementById("emergencyPanel");
 
-    if (!panel) {
-        console.error("Emergency panel not found!");
-        return;
-    }
+// CLOSE EMERGENCY PANEL BY CLICKING OUTSIDE
 
-    panel.style.display = "flex";
-    panel.setAttribute("aria-hidden", "false");
-
-    document.body.style.overflow = "hidden";
-
-    const closeButton = panel.querySelector(".close-emergency");
-
-    if (closeButton) {
-        closeButton.focus();
-    }
-}
-
-function closeEmergency() {
-    const panel = document.getElementById("emergencyPanel");
-
-    if (!panel) return;
-
-    panel.style.display = "none";
-    panel.setAttribute("aria-hidden", "true");
-
-    document.body.style.overflow = "";
-}
-
-// Close with Escape key
-document.addEventListener("keydown", function(event) {
-    if (event.key === "Escape") {
-        closeEmergency();
-    }
+document.getElementById("emergencyPanel")?.addEventListener("click", function(event) {
+  if (event.target === this) {
+    closeEmergency();
+  }
 });
 
-// Close when clicking outside the panel
-document.addEventListener("click", function(event) {
-    const panel = document.getElementById("emergencyPanel");
-
-    if (panel && event.target === panel) {
-        closeEmergency();
-    }
-});
